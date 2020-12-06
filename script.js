@@ -1,13 +1,11 @@
 const _ = require('lodash');
 
-const array = [1, 2, 3, 4, 5, 6, 7, 8];
-console.log('answer:', _.without(array, 3));
-
 const body = document.getElementById('gradient');
 const css = document.querySelector('h3');
 const color1 = document.querySelector('.color1');
 const color2 = document.querySelector('.color2');
 const randomBtn = document.getElementById('random');
+const cssInfo = document.getElementById('css-info');
 
 function showCurrentColor() {
   document.body.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
