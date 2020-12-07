@@ -1,15 +1,16 @@
-const _ = require('lodash');
-
-const body = document.getElementById('gradient');
-const css = document.querySelector('h3');
 const color1 = document.querySelector('.color1');
 const color2 = document.querySelector('.color2');
+const css = document.getElementById('css');
+const direction = document.getElementsByName('direction');
+const fontColor = document.getElementsByName('font-color');
 const randomBtn = document.getElementById('random');
-const cssInfo = document.getElementById('css-info');
+const copyBtn = document.getElementById('copy');
+const selectBtn = document.getElementById('select');
 
-function showCurrentColor() {
-  document.body.style.background = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
-  css.textContent = body.style.background + ';';
+function showCurrentColor(deg = 'right') {
+  let backgroundStyle = `linear-gradient(to ${deg}, ${color1.value}, ${color2.value})`;
+  document.body.style.background = backgroundStyle;
+  css.value = `${backgroundStyle};`;
 }
 
 function createRandomColor() {
@@ -20,16 +21,64 @@ function createRandomColor() {
   return randomColor;
 }
 
+function btnTextChange(btn, msg) {
+  const previousMsg = btn.textContent;
+  btn.textContent = msg;
+  setTimeout(() => {
+    btn.textContent = previousMsg;
+  }, 1000);
+}
+
 function setRandomColor() {
   color1.value = createRandomColor();
   color2.value = createRandomColor();
+  btnTextChange(randomBtn, 'Changed!');
   showCurrentColor();
+}
+
+function selectCurrentValue() {
+  /* Select the text field */
+  css.select();
+  css.setSelectionRange(0, 99999); /*For mobile devices*/
+}
+
+function copyText() {
+  selectCurrentValue();
+
+  /* Copy the text inside the text field */
+  document.execCommand('copy');
+
+  /* Alert the copied text */
+  btnTextChange(copyBtn, 'Copied!');
+}
+
+function selectText() {
+  selectCurrentValue();
+  btnTextChange(selectBtn, 'Selected!');
 }
 
 // EventListener
 color1.addEventListener('input', showCurrentColor);
 color2.addEventListener('input', showCurrentColor);
 randomBtn.addEventListener('click', setRandomColor);
+copyBtn.addEventListener('click', copyText);
+selectBtn.addEventListener('click', selectText);
+
+// change direction
+direction.forEach((e) => {
+  e.addEventListener('click', () => {
+    const deg = document.querySelector('input:checked[name=direction]').value;
+    showCurrentColor(deg);
+  });
+});
+
+// change font color
+fontColor.forEach((e) => {
+  e.addEventListener('click', () => {
+    const color = document.querySelector('input:checked[name=font-color]').value;
+    document.body.style.color = color;
+  });
+});
 
 // On Load
-showCurrentColor();
+setRandomColor();
