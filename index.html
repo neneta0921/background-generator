@@ -13,16 +13,45 @@
       gtag('config', 'G-HGEPCV3FMS');
     </script>
     <title>Background Generator</title>
+    <link rel="stylesheet" type="text/css" href="reset.min.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <body id="gradient">
+  <body>
     <h1>Background Generator</h1>
-    <input class="color1" type="color" name="color1" value="#0fc5be" />
-    <input class="color2" type="color" name="color2" value="#0b3f8f" />
-    <button id="random">Random Change</button>
-    <h2>This is the Background</h2>
-    <h3></h3>
-    <input type="text" id="target" />
+
+    <div class="select">
+      <span>Select color: </span>
+      <input class="color1" type="color" name="color1" />
+      <input class="color2" type="color" name="color2" />
+    </div>
+    <div class="random">
+      <span>Select color at random:</span>
+      <button id="random">At Random</button>
+    </div>
+    <div class="deg">
+      <span>Select direction: </span>
+      <input type="radio" name="direction" id="right" value="right" checked />
+      <label for="right">to right</label>
+      <input type="radio" name="direction" id="left" value="left" />
+      <label for="left">to left</label>
+      <input type="radio" name="direction" id="top" value="top" />
+      <label for="top">to top</label>
+      <input type="radio" name="direction" id="bottom" value="bottom" />
+      <label for="bottom">to bottom</label>
+    </div>
+    <div class="font-color">
+      <span>Select Text Color</span>
+      <input type="radio" name="font-color" id="black" value="black" checked />
+      <label for="black">Black</label>
+      <input type="radio" name="font-color" id="white" value="white" />
+      <label for="white">White</label>
+    </div>
+    <h2>Current CSS Background</h2>
+    <input type="text" id="css" class="input-css" />
+    <div class="button-area">
+      <button id="copy">Copy</button>
+      <button id="select">Select-all</button>
+    </div>
     <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
