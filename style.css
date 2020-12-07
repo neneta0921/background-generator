@@ -53,6 +53,7 @@ button {
 button:hover {
   background-color: #333333;
   color: #fafafa;
+  cursor: pointer;
 }
 
 button:focus {
